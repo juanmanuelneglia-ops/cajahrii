@@ -1,0 +1,182 @@
+(() => {
+    // src/wizard.js
+    var wizards = /* @__PURE__ */ new WeakMap();
+    var Validator = null;
+    var wizard = (Alpine) => {
+      Alpine.directive("wizard", (el, { value, expression, modifiers }, { Alpine: Alpine2, evaluate, cleanup }) => {
+        const wizard2 = getWizard(el, Alpine2);
+        const step = wizard2.getStep(el);
+        cleanup(() => step.cleanup());
+        const evaluateCheck = () => modifiers.includes("rules") ? evaluateAsRules(Alpine2.$data(el), expression, evaluate) : [!!evaluate(expression), {}];
+        Alpine2.effect(() => {
+          if (expression !== "" && value === "step") {
+            const [passes, errors] = evaluateCheck();
+            step.is_complete = passes;
+            step.errors = errors;
+          }
+          if (value === "if") {
+            step.is_applicable = evaluateCheck()[0];
+          }
+          if (value === "title") {
+            if (modifiers.includes("dynamic")) {
+              step.title = `${evaluate(expression)}`;
+            } else {
+              step.title = expression;
+            }
+          }
+        });
+      });
+      Alpine.magic("wizard", (el, { Alpine: Alpine2 }) => {
+        return getWizard(el, Alpine2);
+      });
+    };
+    wizard.setValidator = (implementation) => {
+      Validator = implementation;
+    };
+    var evaluateAsRules = ($data, expression, evaluate) => {
+
+      if (Validator === null) {
+        throw 'The "validatorjs" package is required to use the ".rules" modifier. See <https://github.com/mikeerickson/validatorjs>';
+      }
+      const data = Object.getOwnPropertyNames($data).reduce((data2, key) => ({ ...data2, [key]: $data[key] }), {});
+      const validator = new Validator(data, evaluate(expression));
+      return [validator.passes(), validator.errors.all()];
+    };
+    var getWizard = (el, Alpine) => {
+      const root = Alpine.closestRoot(el);
+      if (!wizards.has(root)) {
+        wizards.set(root, initWizardRoot(Alpine));
+      }
+      return wizards.get(root);
+    };
+    var initWizardRoot = (Alpine) => {
+      return Alpine.reactive({
+        steps: [],
+        current_index: 0,
+        current() {
+          return this.steps[this.current_index] || { el: null, title: null };
+        },
+        next() {
+          return this.steps[this.nextIndex()] || { el: null, title: null };
+        },
+        previous() {
+          return this.steps[this.previousIndex()] || { el: null, title: null };
+        },
+        previousIndex() {
+          return findNextIndex(this.steps, this.current_index, -1);
+        },
+        nextIndex() {
+          return findNextIndex(this.steps, this.current_index, 1);
+        },
+
+       
+        progress() {
+          let current = 0;
+          let complete = 0;
+          let total = 0;
+          for (let index = 0; index < this.steps.length; index++) {
+            const step = this.steps[index];
+            if (!step.is_applicable) {
+              continue;
+            }
+            total++;
+            if (index <= this.current_index) {
+              current++;
+            }
+            if (index <= this.current_index && step.is_complete) {
+              complete++;
+            }
+          }
+          return {
+            total,
+            complete,
+            current,
+            incomplete: total - complete,
+            percentage: `${Math.floor(complete / total * 100)}%`,
+            percentage_int: Math.floor(complete / total * 100),
+            percentage_float: Math.floor((complete / total + Number.EPSILON) * 100) / 100
+          };
+        },
+        isFirst() {
+          return this.previousIndex() === null;
+        },
+        isNotFirst() {
+          return !this.isFirst();
+        },
+        isLast() {
+          return this.nextIndex() === null;
+        },
+        isNotLast() {
+          return !this.isLast();
+        },
+        isComplete() {
+          return this.current().is_complete && this.nextIndex() === null;
+        },
+        isNotComplete() {
+          return !this.isComplete();
+        },
+        isIncomplete() {
+          return this.isNotComplete();
+        },
+        canGoForward() {
+          return this.current().is_complete && this.nextIndex() !== null;
+        },
+        cannotGoForward() {
+          return !this.canGoForward();
+        },
+        forward() {
+          this.goto(this.nextIndex());
+        },
+        canGoBack() {
+          return this.previousIndex() !== null;
+        },
+        cannotGoBack() {
+          return !this.canGoBack();
+        },
+        back() {
+          this.goto(this.previousIndex());
+        },
+        goto(index) {
+          if (index !== null && this.steps[index] !== void 0) {
+            this.current_index = index;
+          }
+          return this.current();
+        },
+        getStep(el) {
+          let step = this.steps.find((step2) => step2.el === el);
+          if (!step) {
+            el.setAttribute("x-show", "$wizard.current().el === $el");
+            step = Alpine.reactive({
+              el,
+              title: "",
+              is_applicable: true,
+              is_complete: true,
+              errors: {},
+              cleanup: () => {
+                this.steps = this.steps.filter((step2) => step2.el === el);
+              }
+            });
+            this.steps.push(step);
+          }
+          return step;
+        }
+      });
+    };
+    var findNextIndex = (steps, current, direction = 1) => {
+      for (let index = current + direction; index >= 0 && index < steps.length; index += direction) {
+        if (steps[index] && steps[index].is_applicable) {
+          return index;
+        }
+      }
+      return null;
+    };
+    var wizard_default = wizard;
+  
+    // builds/cdn.js
+    document.addEventListener("alpine:init", () => {
+      if (window.Validator) {
+        wizard_default.setValidator(window.Validator);
+      }
+      window.Alpine.plugin(wizard_default);
+    });
+  })();

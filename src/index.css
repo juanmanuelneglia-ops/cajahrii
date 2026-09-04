@@ -97,6 +97,13 @@ p {
   min-height: 100vh;
 }
 
+.oficial-frame {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  border: 0;
+}
+
 .skip-link {
   position: absolute;
   left: 16px;

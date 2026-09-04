@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-import Home from './pages/Home'
+import OficialHome from './pages/OficialHome'
 import Empresas from './pages/Empresas'
 import Catalog from './pages/Catalog'
 import Product from './pages/Product'
@@ -15,8 +15,8 @@ import Contacto from './pages/Contacto'
 export default function App() {
   return (
     <Routes>
+      <Route path="/" element={<OficialHome />} />
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/cuentas" element={<Catalog />} />
         <Route path="/tarjetas" element={<Catalog />} />

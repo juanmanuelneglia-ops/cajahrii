@@ -1,0 +1,475 @@
+/* Only for mobile */
+@media only screen and (max-width: 767px) {
+    li:not(.is-active) span.step-name {
+        display: none;
+    }
+
+
+    /* Utilities */
+    .m-overflow-hidden {
+        overflow: hidden;
+    }
+
+    /* Header */
+    header div#menuMovil .action-btn,
+    div#menuMovil button.navbar-toggler,
+    div#menuMovil a.toggleSearchBtn {
+        background: none;
+    }
+
+    div#menuMovil button.navbar-toggler {
+        color: #005199;
+    }
+
+    /* Footer  */
+
+
+    footer#footer-main .footer {
+        padding: 100px 24px 50px 24px;
+    }
+
+    footer#footer-main table td {
+        width: 110px;
+    }
+
+    #footer-main .mb-5 {
+        margin-bottom: 50px !important;
+    }
+
+    .bottom-footer,
+    .bottom-footer .text-copyright {
+        text-align: center;
+    }
+
+    .bottom-footer .col-md-6 {
+        padding: 20px;
+    }
+
+    .col-md-6.text-copyright {
+        border-top: 1px solid #ffffff38;
+    }
+
+    .bottom-footer a {
+        margin-right: 0;
+        border: none;
+    }
+
+
+    .footer-logos {
+        justify-content: space-around;
+    }
+
+    .linea-etica {
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .linea-etica>div {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+    }
+
+
+    img.icon-linea-etica {
+        order: -1;
+    }
+
+    .linea-etica {
+        margin: 15px 0;
+    }
+
+    .footer-logos {
+        padding: 15px 0;
+    }
+
+
+    /* Header */
+    nav#mainnavbar {
+        margin-bottom: 0;
+        padding: 10px 0;
+    }
+
+    main#main {
+        margin-top: 0;
+    }
+
+    header .action-btn,
+    a.toggleSearchBtn {
+        background: #51708e14;
+        display: flex;
+        align-items: center;
+        border: none;
+        color: #5065784F;
+        padding: 5px 12px;
+        border-radius: 5px;
+    }
+
+    a.toggleSearchBtn {
+        order: 2;
+    }
+
+    .banca-online-btn,
+    .navbar-toggler,
+    a.toggleSearchBtn {
+        height: 46px;
+    }
+
+    a.toggleSearchBtn i {
+        margin-right: 0px;
+    }
+
+    .navbar-toggler {
+        order: 3;
+    }
+
+    form.d-flex.search-form-container {
+        width: 20px;
+        top: 12px;
+        right: 50px;
+    }
+
+    form.d-flex.search-form-container.active {
+        width: calc(100% - 24px);
+        right: 12px;
+    }
+
+    form.d-flex.search-form-container .search-form {
+        width: 20px;
+    }
+
+    .header-actions-container {
+        overflow: hidden;
+    }
+
+    .elementor.elementor .elementor-widget-n-tabs.e-n-tabs-mobile .e-n-tab-title {
+        order: 1 !important;
+        width: auto;
+        margin: 0 !important;
+
+
+    }
+
+    .elementor-widget-n-tabs .e-n-tabs-heading {
+        --n-tabs-heading-display: inline-block !important;
+    }
+
+    .elementor-widget-n-tabs .e-n-tabs-heading {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start !important;
+        margin: 10px;
+    }
+
+    /* Ajustes del Slider */
+    .n2-section-smartslider {
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        mask-position: -31px -24px
+    }
+
+    /* .n2-ss-slider .n2-ss-slider-controls-absolute-left-bottom>* {
+        margin: 0 0 10px 50px !important;
+    } */
+
+
+    /* Widgets */
+    .relatedpages-container {
+        flex-direction: column;
+    }
+
+    .promociones-item {
+        padding: 14px;
+    }
+
+
+    .blue-features-list ul {
+        display: block;
+        columns: 1;
+        width: 100%;
+    }
+
+    .relatedpages-tarjeta-container {
+        grid-template-columns: 1fr;
+    }
+
+   
+
+    .framed-slider .n2-ss-layer {
+        max-width: 100vw;
+    }
+
+    .framed-slider {
+        overflow: hidden !important;
+    }
+
+
+    main .container {
+        padding: 0;
+    }
+
+    .beneficios-icons-list .elementor-widget-icon-box::after {
+        left: 20%;
+        bottom: 0;
+        height: 1px;
+        width: 60%;
+    }
+
+    .beneficios-icons-list .elementor-widget-icon-box>div {
+        padding: 40px 10px !important;
+    }
+
+    .e-n-tabs-heading button[aria-selected="true"]:after {
+        display: none;
+    }
+
+    .elementor-widget-n-accordion details summary div::before {
+        margin-right: 10px;
+    }
+
+    .relatedpages-item-tarjeta {
+        margin-top: 50px;
+    }
+
+    .appbs2000moneytext .elementor-heading-title {
+        display: block;
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-size: 25px !important;
+    }
+
+    .elementor-widget-cda_promociones .swiper-button-prev {
+        left: -60px;
+    }
+
+    .elementor-widget-cda_promociones .swiper-button-next {
+        right: -60px;
+    }
+
+    .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: -42px;
+    }
+
+    .promociones-item .cta-container {
+        display: none;
+    }
+
+    .responsive-slider-title{
+        font-size: 28px !important;
+        line-height: 42px !important;
+    }
+
+    .ca-tabs button {
+        flex: 2 !important;
+    }
+
+    .page-id-2534 #sliderDeBeneficios .card{
+        backdrop-filter: none;
+        background: #191919d6;
+    }
+
+    ul.cda-tabs li {
+        width: 100%;
+    }
+
+    .products-grid-container.cuentas-container .hover-card{
+        display: none;
+    }
+
+    .products-grid-container.cuentas-container .card-title{
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+    }
+
+
+    .products-grid-container.cuentas-container .products-grid-card{
+        height: auto;
+        aspect-ratio: 0.8;
+        
+    }
+
+    .products-grid-container .row{
+        --bs-gutter-x: 8px;
+    }
+
+    .products-grid-container.cuentas-container .products-grid-card{
+        margin-bottom: 8px;
+    }
+
+    .products-grid-container.cuentas-container  .products-grid-card{
+        padding: 22px !important;
+    }
+    .products-grid-container.cuentas-container .products-grid-card:hover .account-description {
+        opacity: 1;
+    }
+
+    .search-results-container{
+        margin-top: 30px;
+    }
+
+    /*Tabs mobile Beneficios HIT*/
+    .page-id-13690 .e-n-tabs-heading{ 
+        width: 100% !important;
+        display: flex  !important;
+        flex-direction: column !important;
+    }
+
+    aside.thumbnails {
+        order: 1;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .image-gallery {
+        display: flex    ;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    main.primary {
+        max-width: 100%;
+    }
+
+    .property-title {
+        flex-direction: column;
+    }
+
+    .single-propiedad .requisitos > div > div,
+    .single-propiedad article > div.row > div
+    {
+        padding: 25px;
+    }
+
+    table.features-table .td-title {
+        width: 50%;
+        text-align: left;
+        font-weight: 600;
+    }
+    
+    table.features-table .td-description {
+        text-align: left;
+    }
+
+    .mapApp > div {
+        flex-direction: column;
+    }
+
+    .mapApp .mapa-search-container {
+        order: 2;
+    }
+
+    .mapApp .mapa-container {
+        border-radius: 0px;
+    }
+
+    
+    .mapApp  div#info-window {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .archive-post-thumbnail a{
+        width: 94px;
+        height: 71px;
+
+    }
+    
+    .archive-post-thumbnail img {
+        width: 94px;
+        height: 71px;
+    }
+
+    .blog h1.page-title {
+        color: #06243E;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+    }
+
+    .archive-posts-list h3{
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* número de líneas antes del corte */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .gx-5 {
+        --bs-gutter-x: 20px !important;
+    }
+
+    .search-result-content {
+        margin-left: 15px;
+    }
+
+    .blog span.post-date {
+        display: none;
+    }
+
+    .archive-posts-list {
+        padding: 15px 0;
+    }
+
+    main#main .blog-index-container, main#main .news-section {
+        margin-top: 20px;
+    }
+
+    #sidebar {
+        padding-bottom: 30px;
+    }
+    
+    .relatedpages-item .cta-container {
+        opacity: 1;
+        overflow: hidden;
+        max-height: 200px;
+    }
+    
+    .relatedpages-item .btn.cta {
+    
+        border: 1px solid #FFFFFF;
+    }
+
+    .relatedpages-item > div {
+        background: #07355e81;
+        flex-grow: 1;
+    }
+    
+    .promociones-item.news-item.swiper-slide.col-md-4 {
+        width: 100%;
+    }
+
+    .promociones-tira-header{
+        display: none !important;
+    }
+
+    .promociones-container.tira-promociones-container.overflow-hidden.activeCategory{
+        display: block !important;
+    }
+    
+    .promociones-item .cta-container {
+    opacity: 1;
+    overflow: hidden;
+    max-height: 200px;
+	}
+    
+    /* Ajustar posición de dropdowns y núm promociones en Mobile */    
+    .promotions-filters {
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+	}
+    
+    /* Ajustar paginación en Mobile */
+    #post-2693 ul.pagination.justify-content-center {
+    display: flex;
+    flex-wrap: wrap;
+	}
+}

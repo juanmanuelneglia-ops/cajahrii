@@ -1,0 +1,253 @@
+(function () {
+	'use strict';
+
+	function initializeOnlineBankingMenus() {
+		const dropdowns = document.querySelectorAll('[data-online-banking]');
+
+		if (!dropdowns.length) {
+			return;
+		}
+
+		dropdowns.forEach(function (dropdown) {
+			const trigger = dropdown.querySelector('[data-online-banking-trigger]');
+			const menu = dropdown.querySelector('[data-online-banking-menu]');
+			const menuLinks = menu
+				? Array.from(menu.querySelectorAll('a[href]'))
+				: [];
+
+			if (!trigger || !menu) {
+				return;
+			}
+
+			let closeTimer = null;
+
+			function isOpen() {
+				return trigger.getAttribute('aria-expanded') === 'true';
+			}
+
+			function openMenu() {
+				if (closeTimer) {
+					window.clearTimeout(closeTimer);
+					closeTimer = null;
+				}
+
+				/* Cierra otros desplegables que utilicen el mismo componente */
+				dropdowns.forEach(function (otherDropdown) {
+					if (otherDropdown === dropdown) {
+						return;
+					}
+
+					const otherTrigger = otherDropdown.querySelector(
+						'[data-online-banking-trigger]'
+					);
+
+					const otherMenu = otherDropdown.querySelector(
+						'[data-online-banking-menu]'
+					);
+
+					if (!otherTrigger || !otherMenu) {
+						return;
+					}
+
+					otherDropdown.classList.remove('is-open');
+					otherTrigger.setAttribute('aria-expanded', 'false');
+					otherMenu.classList.remove(
+						'is-animating-in',
+						'is-animating-out'
+					);
+					otherMenu.hidden = true;
+				});
+
+				menu.hidden = false;
+				menu.classList.remove('is-animating-out');
+
+				/*
+				 * Fuerza un nuevo ciclo de renderizado para que
+				 * la animación se ejecute cada vez que se abre.
+				 */
+				void menu.offsetWidth;
+
+				menu.classList.add('is-animating-in');
+				dropdown.classList.add('is-open');
+				trigger.setAttribute('aria-expanded', 'true');
+			}
+
+			function closeMenu(options) {
+				const settings = Object.assign(
+					{
+						restoreFocus: false,
+						immediate: false
+					},
+					options || {}
+				);
+
+				if (!isOpen() && menu.hidden) {
+					return;
+				}
+
+				dropdown.classList.remove('is-open');
+				trigger.setAttribute('aria-expanded', 'false');
+				menu.classList.remove('is-animating-in');
+
+				if (settings.immediate) {
+					menu.classList.remove('is-animating-out');
+					menu.hidden = true;
+				} else {
+					menu.classList.add('is-animating-out');
+
+					closeTimer = window.setTimeout(function () {
+						menu.classList.remove('is-animating-out');
+						menu.hidden = true;
+						closeTimer = null;
+					}, 180);
+				}
+
+				if (settings.restoreFocus) {
+					trigger.focus();
+				}
+			}
+
+			function toggleMenu() {
+				if (isOpen()) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			}
+
+			trigger.addEventListener('click', function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+				toggleMenu();
+			});
+
+			menu.addEventListener('click', function (event) {
+				event.stopPropagation();
+			});
+
+			menuLinks.forEach(function (link) {
+				link.addEventListener('click', function () {
+					closeMenu({
+						immediate: true
+					});
+				});
+			});
+
+			document.addEventListener('click', function (event) {
+				if (!dropdown.contains(event.target)) {
+					closeMenu();
+				}
+			});
+
+			document.addEventListener('keydown', function (event) {
+				if (!isOpen()) {
+					return;
+				}
+
+				if (event.key === 'Escape') {
+					event.preventDefault();
+
+					closeMenu({
+						restoreFocus: true
+					});
+
+					return;
+				}
+
+				if (event.key === 'Tab') {
+					const focusableElements = [
+						trigger
+					].concat(menuLinks);
+
+					const firstElement = focusableElements[0];
+					const lastElement =
+						focusableElements[focusableElements.length - 1];
+
+					if (
+						event.shiftKey &&
+						document.activeElement === firstElement
+					) {
+						closeMenu();
+					}
+
+					if (
+						!event.shiftKey &&
+						document.activeElement === lastElement
+					) {
+						closeMenu();
+					}
+				}
+			});
+
+			trigger.addEventListener('keydown', function (event) {
+				if (
+					event.key === 'ArrowDown' &&
+					!isOpen()
+				) {
+					event.preventDefault();
+					openMenu();
+
+					if (menuLinks.length) {
+						menuLinks[0].focus();
+					}
+				}
+			});
+
+			menuLinks.forEach(function (link, index) {
+				link.addEventListener('keydown', function (event) {
+					if (event.key === 'ArrowDown') {
+						event.preventDefault();
+
+						const nextIndex =
+							(index + 1) % menuLinks.length;
+
+						menuLinks[nextIndex].focus();
+					}
+
+					if (event.key === 'ArrowUp') {
+						event.preventDefault();
+
+						const previousIndex =
+							(index - 1 + menuLinks.length) %
+							menuLinks.length;
+
+						menuLinks[previousIndex].focus();
+					}
+
+					if (event.key === 'Home') {
+						event.preventDefault();
+						menuLinks[0].focus();
+					}
+
+					if (event.key === 'End') {
+						event.preventDefault();
+						menuLinks[menuLinks.length - 1].focus();
+					}
+				});
+			});
+
+			window.addEventListener(
+				'resize',
+				function () {
+					if (isOpen()) {
+						closeMenu({
+							immediate: true
+						});
+					}
+				},
+				{
+					passive: true
+				}
+			);
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener(
+			'DOMContentLoaded',
+			initializeOnlineBankingMenus
+		);
+	} else {
+		initializeOnlineBankingMenus();
+	}
+})();
