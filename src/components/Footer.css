@@ -1,0 +1,79 @@
+.footer {
+  background: var(--navy-ink);
+  color: #d7e4f2;
+  padding: 56px 0 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.footer .brand-name,
+.footer h4 {
+  color: #fff;
+}
+
+.footer p,
+.footer a {
+  color: #c5d4e4;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  display: block;
+  margin: 8px 0;
+}
+
+.footer a:hover {
+  color: var(--cyan);
+}
+
+.contact-box {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.contact-box strong {
+  color: #fff;
+}
+
+.legal {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+}
+
+.seals {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.seal {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

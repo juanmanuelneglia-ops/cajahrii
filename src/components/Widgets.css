@@ -1,0 +1,135 @@
+.fab {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--navy);
+  box-shadow: 0 10px 24px rgba(0, 41, 82, 0.28);
+  z-index: 50;
+  display: grid;
+  place-items: center;
+}
+
+.fab-access { left: 18px; bottom: 18px; }
+.fab-chat { right: 18px; bottom: 18px; }
+
+.panel,
+.chat,
+.search-modal {
+  position: fixed;
+  z-index: 60;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.panel {
+  left: 18px;
+  bottom: 84px;
+  width: min(320px, calc(100% - 36px));
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.chat {
+  right: 18px;
+  bottom: 84px;
+  width: min(360px, calc(100% - 36px));
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel h3,
+.chat-head {
+  color: var(--navy);
+}
+
+.panel label {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.chat-head {
+  background: var(--navy);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-head button,
+.search-modal .close {
+  background: none;
+  border: 0;
+  color: inherit;
+}
+
+.chat-body {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.msg {
+  background: var(--mist);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+.msg.me {
+  background: var(--cyan-wash);
+  justify-self: end;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.chat-form input {
+  flex: 1;
+  border: 1px solid #cfd8e3;
+  border-radius: 999px;
+  padding: 10px 12px;
+}
+
+.search-modal {
+  inset: 0;
+  background: rgba(4, 22, 44, 0.45);
+  display: grid;
+  place-items: start center;
+  padding-top: 12vh;
+}
+
+.search-box {
+  width: min(720px, calc(100% - 28px));
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.search-box input {
+  width: 100%;
+  border: 1px solid #cfd8e3;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0;
+}
+
+.result {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.result strong {
+  display: block;
+}
