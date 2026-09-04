@@ -1,3 +1,5 @@
+import { img } from '../media'
+
 export function IconSearch() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -65,13 +67,10 @@ export function IconClose() {
   )
 }
 
-export function Logo({ compact }) {
+export function Logo({ white }) {
   return (
-    <span className={`brand ${compact ? 'compact' : ''}`}>
-      <span className="brand-mark" aria-hidden="true">
-        ca
-      </span>
-      <span className="brand-name">Caja de Ahorros</span>
+    <span className="brand">
+      <img src={white ? img.logoWhite : img.logo} alt="Caja de Ahorros" width={white ? 168 : 188} />
     </span>
   )
 }

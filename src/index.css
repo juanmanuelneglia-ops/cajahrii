@@ -1,24 +1,24 @@
 :root {
-  --navy: #00498a;
-  --navy-deep: #00305e;
-  --navy-ink: #00264d;
-  --navy-bar: #0b4f94;
+  --navy: #005199;
+  --navy-deep: #004d96;
+  --navy-ink: #06243e;
+  --navy-bar: #005199;
   --cyan: #3ec6f0;
-  --cyan-soft: #7dd8f5;
-  --cyan-wash: #d7f4fc;
+  --cyan-soft: #7fa7cc;
+  --cyan-wash: #e8f4fb;
   --orange: #f39200;
   --orange-hover: #d97f00;
   --red-toxic: #e23b3b;
-  --ink: #1a2433;
-  --muted: #5b6777;
-  --line: #e4e9ef;
+  --ink: #06243e;
+  --muted: #506577;
+  --line: #d9e1e9;
   --paper: #ffffff;
-  --mist: #f4f7fa;
-  --shadow: 0 12px 40px rgba(0, 41, 82, 0.12);
-  --radius: 18px;
-  --header-h: 76px;
-  --nav-h: 52px;
-  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mist: #f3f7fc;
+  --shadow: 0 10px 28px rgba(6, 36, 62, 0.08);
+  --radius: 12px;
+  --header-h: 84px;
+  --nav-h: 48px;
+  --font: 'Poppins', sans-serif;
 }
 
 *,
@@ -34,9 +34,18 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  color: var(--ink);
+  color: var(--muted);
   background: var(--paper);
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 body.a11y-lg {
@@ -127,10 +136,10 @@ p {
 }
 
 .mark {
-  background: var(--cyan);
-  color: #04324a;
-  padding: 0 0.22em;
-  border-radius: 4px;
+  background: #7fd4f5;
+  color: var(--ink);
+  padding: 0 0.18em 0.04em;
+  font-weight: 600;
 }
 
 .btn {
@@ -139,9 +148,10 @@ p {
   justify-content: center;
   gap: 8px;
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 10px 20px;
   border: 1.5px solid transparent;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.92rem;
   transition: 0.2s ease;
   white-space: nowrap;
 }

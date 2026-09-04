@@ -670,7 +670,7 @@ export const news = [
   {
     slug: 'alianza-fintech',
     date: '26 de agosto de 2026',
-    title: 'Alianza estratégica con la Cámara Fintech de Panamá para conectar con el ecosistema de innovación',
+    title: 'Caja de Ahorros impulsa una alianza estratégica con la Cámara Fintech de Panamá',
   },
   {
     slug: 'sostenibilidad-gobernanza',

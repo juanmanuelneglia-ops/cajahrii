@@ -21,29 +21,11 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 220px;
 }
 
-.brand-mark {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--navy);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.brand-name {
-  font-weight: 800;
-  color: var(--navy);
-  font-size: 1.2rem;
-  letter-spacing: -0.03em;
+.brand img {
+  height: 42px;
+  width: auto;
 }
 
 .segments {
