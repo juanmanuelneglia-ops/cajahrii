@@ -29,7 +29,7 @@ export default function Empresas() {
             <h3>Financiamiento</h3>
             <p>Capital de trabajo y activos con acompañamiento especializado.</p>
           </Link>
-          <Link className="action" to="/banca-en-linea">
+          <Link className="action" to="/comercial">
             <span className="action-icon">BL</span>
             <h3>Caja en Línea comercial</h3>
             <p>Pagos, transferencias y control de tesorería desde un solo lugar.</p>

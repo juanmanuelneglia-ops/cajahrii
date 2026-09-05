@@ -7,6 +7,7 @@ import Product from './pages/Product'
 import CasaMas from './pages/CasaMas'
 import AbrirCuenta from './pages/AbrirCuenta'
 import BancaEnLinea from './pages/BancaEnLinea'
+import Comercial from './pages/Comercial'
 import Propiedades from './pages/Propiedades'
 import Servicios from './pages/Servicios'
 import Noticias from './pages/Noticias'
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/" element={<OficialHome />} />
       <Route path="/banca-en-linea" element={<BancaEnLinea />} />
       <Route path="/personal" element={<BancaEnLinea />} />
+      <Route path="/comercial" element={<Comercial />} />
       <Route element={<Layout />}>
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/cuentas" element={<Catalog />} />

@@ -5,6 +5,7 @@ document.addEventListener('click', (event) => {
   if (href.startsWith('#') || href.startsWith('javascript:')) return
 
   const rules = [
+    [/ecaja\.cajadeahorros\.com\.pa|loginC\.jsp|cajaenlinea/i, '/comercial'],
     [/enlinea\.cajadeahorros\.com\.pa|canales-digitales\/banca-en-linea|\/personal/i, '/banca-en-linea'],
     [/prestamo-de-casa-mas|casa-mas|tus-proyectos-realidad-con-casa-mas/i, '/casa-mas'],
     [/aperturadecuentaca|list-account/i, '/abre-tu-cuenta'],
