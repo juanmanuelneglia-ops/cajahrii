@@ -51,6 +51,31 @@ styles.textContent = `
     pointer-events: none;
     opacity: .45;
   }
+  .ca-spinner-btn {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: ca-spin .7s linear infinite;
+  }
+  .ca-loading {
+    min-height: 280px;
+    display: grid;
+    place-items: center;
+    width: 100%;
+  }
+  .ca-loading__ring {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #d7e4ef;
+    border-top-color: #005199;
+    border-radius: 50%;
+    animation: ca-spin .7s linear infinite;
+  }
+  @keyframes ca-spin {
+    to { transform: rotate(360deg); }
+  }
 `
 document.head.appendChild(styles)
 
@@ -145,6 +170,32 @@ function showPasswordStep() {
     password.type = password.type === 'password' ? 'text' : 'password'
   })
   back?.addEventListener('click', showUserStep)
+  login?.addEventListener('click', () => {
+    if (!password.value.trim()) return
+    showLoading()
+  })
+  password?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && password.value.trim()) {
+      event.preventDefault()
+      showLoading()
+    }
+  })
+}
+
+function showLoading() {
+  const root = formRoot()
+  if (!root) return
+  const login = root.querySelector('[data-login]')
+  if (login) {
+    login.disabled = true
+    login.classList.add('disabled')
+    login.innerHTML = '<span class="ca-spinner-btn" aria-hidden="true"></span>'
+  }
+  const back = root.querySelector('[data-back]')
+  if (back) back.disabled = true
+  setTimeout(() => {
+    root.innerHTML = '<div class="ca-loading" role="status" aria-label="Cargando"><div class="ca-loading__ring"></div></div>'
+  }, 350)
 }
 
 document.addEventListener('input', syncContinue)
