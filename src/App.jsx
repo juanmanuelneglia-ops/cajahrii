@@ -16,6 +16,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<OficialHome />} />
+      <Route path="/banca-en-linea" element={<BancaEnLinea />} />
+      <Route path="/personal" element={<BancaEnLinea />} />
       <Route element={<Layout />}>
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/cuentas" element={<Catalog />} />
@@ -25,7 +27,6 @@ export default function App() {
         <Route path="/productos/:slug" element={<Product />} />
         <Route path="/casa-mas" element={<CasaMas />} />
         <Route path="/abre-tu-cuenta" element={<AbrirCuenta />} />
-        <Route path="/banca-en-linea" element={<BancaEnLinea />} />
         <Route path="/propiedades" element={<Propiedades />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/noticias" element={<Noticias />} />
